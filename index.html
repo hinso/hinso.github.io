@@ -1,1 +1,23 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>賽程</title><script defer="defer" src="/static/js/main.4b9a8cf7.js"></script><link href="/static/css/main.528e2d23.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#38003c"/>
+  <title>英超賽程</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <button id="prevBtn" class="nav-btn prev" aria-label="上一日">◀ 上一日</button>
+      <button id="nextBtn" class="nav-btn next" aria-label="下一日">下一日 ▶</button>
+    </header>
+    <h1 id="dateTitle" class="date-title">—</h1>
+    <main id="matchList" class="match-list">
+      <p class="loading">載入中…</p>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

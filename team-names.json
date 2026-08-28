@@ -1,0 +1,33 @@
+{
+  "names": {
+    "Crystal Palace": "水晶宮",
+    "Manchester City": "曼城",
+    "Liverpool": "利物浦",
+    "Nottingham Forest": "諾定咸森林",
+    "AFC Bournemouth": "般尼予夫",
+    "Everton": "愛華頓",
+    "Coventry City": "高雲地利",
+    "Hull City": "侯城",
+    "Tottenham Hotspur": "熱刺",
+    "Newcastle United": "紐卡素",
+    "Leeds United": "列斯聯",
+    "Brentford": "賓福特",
+    "Sunderland": "新特蘭",
+    "Fulham": "富咸",
+    "Chelsea": "車路士",
+    "Brighton & Hove Albion": "白禮頓",
+    "Manchester United": "曼聯",
+    "Ipswich Town": "葉士域治",
+    "Aston Villa": "亞士東維拉",
+    "Arsenal": "阿仙奴"
+  },
+  "logos": {
+    "AFC Bournemouth": "https://resources.premierleague.com/premierleague25/badges/91.svg",
+    "Hull City": "https://resources.premierleague.com/premierleague25/badges/88.svg",
+    "Tottenham Hotspur": "https://resources.premierleague.com/premierleague25/badges/6.svg",
+    "Newcastle United": "https://resources.premierleague.com/premierleague25/badges/4.svg",
+    "Brentford": "https://resources.premierleague.com/premierleague25/badges/94.svg",
+    "Manchester United": "https://resources.premierleague.com/premierleague25/badges/1.svg",
+    "Arsenal": "https://resources.premierleague.com/premierleague25/badges/3.svg"
+  }
+}
