@@ -80,32 +80,50 @@ body {
   padding: 16px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.match-time {
+/* 第一行：主隊 vs 客隊 */
+.match-teams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.vs {
   flex: 0 0 auto;
+  font-size: 16px;
+  font-weight: 700;
+  color: #999;
+}
+
+/* 第二行：時間 */
+.match-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #38003c;
-  line-height: 1.2;
 }
 
 .match-time .score {
   font-size: 15px;
   font-weight: 800;
   color: #222;
-  margin-top: 4px;
 }
 
 .team {
   flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 22px;
+  gap: 8px;
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -115,8 +133,9 @@ body {
 }
 
 .team img {
-  width: 34px;
-  height: 34px;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -125,7 +144,6 @@ body {
 }
 
 .team-name {
-  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

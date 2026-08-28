@@ -105,33 +105,43 @@ function render() {
     const card = document.createElement('div');
     card.className = 'match-card';
 
-    const time = document.createElement('div');
-    time.className = 'match-time';
-    time.textContent = formatTime(m.kickoff_utc);
-
-    // 有比分時顯示在時間下方
-    if (m.score && (m.score.home != null || m.score.away != null)) {
-      const score = document.createElement('div');
-      score.className = 'score';
-      score.textContent = `${m.score.home ?? '-'} - ${m.score.away ?? '-'}`;
-      time.appendChild(score);
-    }
+    // 第一行：主隊 vs 客隊
+    const teamsRow = document.createElement('div');
+    teamsRow.className = 'match-teams';
 
     const home = teamEl(m.home, 'home');
     const away = teamEl(m.away, 'away');
 
-    card.appendChild(home);
-    card.appendChild(time);
-    card.appendChild(away);
+    const vs = document.createElement('span');
+    vs.className = 'vs';
+    vs.textContent = 'vs';
+
+    teamsRow.appendChild(home);
+    teamsRow.appendChild(vs);
+    teamsRow.appendChild(away);
+
+    // 第二行：時間（+ 比分 / 狀態）
+    const timeRow = document.createElement('div');
+    timeRow.className = 'match-time';
+    timeRow.textContent = formatTime(m.kickoff_utc);
+
+    if (m.score && (m.score.home != null || m.score.away != null)) {
+      const score = document.createElement('span');
+      score.className = 'score';
+      score.textContent = `${m.score.home ?? '-'} - ${m.score.away ?? '-'}`;
+      timeRow.appendChild(score);
+    }
 
     const tag = statusLabel(m.status);
     if (tag) {
       const t = document.createElement('span');
       t.className = 'status-tag ' + statusClass(m.status);
       t.textContent = tag;
-      card.appendChild(t);
+      timeRow.appendChild(t);
     }
 
+    card.appendChild(teamsRow);
+    card.appendChild(timeRow);
     matchList.appendChild(card);
   }
 }
