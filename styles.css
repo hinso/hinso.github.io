@@ -4,6 +4,19 @@
   padding: 0;
 }
 
+html,
+body {
+  /* 禁止下拉刷新同左右 overscroll 導航 */
+  overscroll-behavior: none;
+  /* 只允許垂直捲動,禁止雙指縮放、雙擊放大同水平手勢 */
+  touch-action: pan-y;
+  /* 禁止長按彈出選單(複製/分享等) */
+  -webkit-touch-callout: none;
+  /* 禁止選取文字 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
   background: #f4f4f4;
@@ -15,6 +28,18 @@ body {
   max-width: 720px;
   margin: 0 auto;
   padding: 16px;
+}
+
+/* 頂部固定:上一日/下一日 + 日期鎖定喺畫面頂部,scroll 都推唔走 */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f4f4f4;
+  /* 抵消 #app 嘅 padding,令背景鋪滿成條頂部 */
+  margin: -16px -16px 0;
+  padding: 16px 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* 頂部：上一日 / 下一日 各 50% 寬 */
@@ -84,22 +109,18 @@ body {
   gap: 8px;
 }
 
-/* 第一行：主隊 vs 客隊 */
-.match-teams {
+/* 第一行：主隊（靠左） */
+/* 第三行：客隊（靠右） */
+.team {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.vs {
-  flex: 0 0 auto;
-  font-size: 16px;
-  font-weight: 700;
-  color: #999;
-}
-
-/* 第二行：時間 */
+/* 第二行：時間（+ 比分 / 狀態） */
 .match-time {
   display: flex;
   align-items: center;
@@ -115,16 +136,6 @@ body {
   font-size: 15px;
   font-weight: 800;
   color: #222;
-}
-
-.team {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 20px;
-  font-weight: 600;
 }
 
 .team.away {

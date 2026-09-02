@@ -9,11 +9,13 @@
 </head>
 <body>
   <div id="app">
-    <header class="topbar">
-      <button id="prevBtn" class="nav-btn prev" aria-label="上一日">◀ 上一日</button>
-      <button id="nextBtn" class="nav-btn next" aria-label="下一日">下一日 ▶</button>
-    </header>
-    <h1 id="dateTitle" class="date-title">—</h1>
+    <div class="sticky-header">
+      <header class="topbar">
+        <button id="prevBtn" class="nav-btn prev" aria-label="上一日">◀ 上一日</button>
+        <button id="nextBtn" class="nav-btn next" aria-label="下一日">下一日 ▶</button>
+      </header>
+      <h1 id="dateTitle" class="date-title">—</h1>
+    </div>
     <main id="matchList" class="match-list">
       <p class="loading">載入中…</p>
     </main>

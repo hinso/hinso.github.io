@@ -57,7 +57,11 @@ function formatTime(utcStr) {
   const d = new Date(utcStr);
   const h = d.getHours();
   const m = String(d.getMinutes()).padStart(2, '0');
-  const period = h < 12 ? '上午' : '下午';
+  let period;
+  if (h < 6) period = '凌晨';
+  else if (h < 12) period = '上午';
+  else if (h < 18) period = '下午';
+  else period = '晚上';
   let h12 = h % 12;
   if (h12 === 0) h12 = 12;
   return `${period}${h12}:${m}`;
@@ -105,20 +109,8 @@ function render() {
     const card = document.createElement('div');
     card.className = 'match-card';
 
-    // 第一行：主隊 vs 客隊
-    const teamsRow = document.createElement('div');
-    teamsRow.className = 'match-teams';
-
+    // 第一行：主隊
     const home = teamEl(m.home, 'home');
-    const away = teamEl(m.away, 'away');
-
-    const vs = document.createElement('span');
-    vs.className = 'vs';
-    vs.textContent = 'vs';
-
-    teamsRow.appendChild(home);
-    teamsRow.appendChild(vs);
-    teamsRow.appendChild(away);
 
     // 第二行：時間（+ 比分 / 狀態）
     const timeRow = document.createElement('div');
@@ -140,8 +132,12 @@ function render() {
       timeRow.appendChild(t);
     }
 
-    card.appendChild(teamsRow);
+    // 第三行：客隊
+    const away = teamEl(m.away, 'away');
+
+    card.appendChild(home);
     card.appendChild(timeRow);
+    card.appendChild(away);
     matchList.appendChild(card);
   }
 }
@@ -213,5 +209,23 @@ nextBtn.addEventListener('click', () => {
     render();
   }
 });
+
+// 禁止水平滑動:防止 iPhone 左右邊緣滑動返回/前進,只保留上下捲動
+let touchStartX = 0;
+let touchStartY = 0;
+
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+  const dx = e.touches[0].clientX - touchStartX;
+  const dy = e.touches[0].clientY - touchStartY;
+  // 水平移動為主時攔截,垂直捲動不受影響
+  if (Math.abs(dx) > Math.abs(dy)) {
+    e.preventDefault();
+  }
+}, { passive: false });
 
 load();
