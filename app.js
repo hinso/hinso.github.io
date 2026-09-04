@@ -1,4 +1,4 @@
-const API_URL = 'https://api.bigballsdata.com/v1/matches?sport=football&league=epl&limit=50';
+const API_URL = 'https://api.bigballsdata.com/v1/stored/matches?sport=football&league=epl&status=scheduled&limit=200';
 const TOKEN = 'Bearer bbs_live_000000UHtL5sEonxInQIIwtuklSRAoXwkijht65rc16b0p7M';
 const MAX_DAYS = 10; // 今日起最多 10 日
 
@@ -180,11 +180,16 @@ async function load() {
     const json = await res.json();
     const data = json.data || [];
 
+    // 只保留今日起 MAX_DAYS 日內的賽事
+    const minKey = dateKey(today);
+    const maxKey = dateKey(maxDate);
     matchesByDate = {};
     for (const m of data) {
       const k = dateKey(new Date(m.kickoff_utc));
-      if (!matchesByDate[k]) matchesByDate[k] = [];
-      matchesByDate[k].push(m);
+      if (k >= minKey && k <= maxKey) {
+        if (!matchesByDate[k]) matchesByDate[k] = [];
+        matchesByDate[k].push(m);
+      }
     }
     render();
   } catch (err) {
